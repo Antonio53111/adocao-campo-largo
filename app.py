@@ -2,15 +2,31 @@ from flask import Flask, render_template
 
 app = Flask(__name__)
 
-# Rota da Tela 1: Vitrine de Animais (Menu Inicial)
-@app.route('/')
-def index():
-    # Dados fictícios para demonstrar o MVP na vitrine
-    animais = [
-        {"nome": "Thor", "especie": "Cachorro", "porte": "Médio", "status": "Disponível", "vacinado": True, "castrado": True},
-        {"nome": "Luna", "especie": "Gato", "porte": "Pequeno", "status": "Disponível", "vacinado": True, "castrado": True}
-    ]
-    return render_template('index.html', animais=animais)
+# Dados simulados dos animais para a vitrine (MVP)
+ANIMALS = [
+    {
+        "id": 1,
+        "name": "Thor",
+        "category": "Cachorro",
+        "size": "Médio",
+        "status": "DISPONÍVEL",
+        "details": "✅ Vacinado ✅ Castrado",
+    },
+    {
+        "id": 2,
+        "name": "Luna",
+        "category": "Gato",
+        "size": "Pequeno",
+        "status": "DISPONÍVEL",
+        "details": "✅ Vacinado ✅ Castrado",
+    },
+]
 
-if __name__ == '__main__':
-    app.run(debug=True)
+
+@app.route("/")
+def index():
+  return render_template("index.html", animals=ANIMALS)
+
+
+if __name__ == "__main__":
+  app.run(debug=True)
